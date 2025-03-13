@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kushwah Coaching — Shaping Futures with Experience & Dedication</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #f97316;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .language-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .language-content {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow);
+        }
+        
+        .language-content h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .language-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn.hindi {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .language-btn.english {
+            background-color: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .language-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(30, 64, 175, 0.85)), url('https://images.unsplash.com/photo-1577896851231-70ef18881754') center/cover;
+            color: var(--white);
+            padding: 8rem 5%;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+        
+        .welcome-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .welcome-point {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .welcome-point i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        
+        .comparison-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1.2rem;
+            text-align: left;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+        
+        .comparison-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .course-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .gallery {
+            background-color: var(--bg-light);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .gallery-item {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .gallery-content {
+            padding: 1.5rem;
+        }
+        
+        .gallery-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .contact {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            background-color: #1e293b;
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 0.8rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selection Modal -->
+    <div class="language-modal" id="languageModal">
+        <div class="language-content">
+            <h2>Choose Your Preferred Language</h2>
+            <p>अपनी पसंदीदा भाषा चुनें</p>
+            <div class="language-buttons">
+                <button class="language-btn hindi" onclick="setLanguage('hindi')">हिंदी</button>
+                <button class="language-btn english" onclick="setLanguage('english')">English</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Kushwah Coaching</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link" data-en="Home" data-hi="होम">Home</a>
+                <a href="#why-choose" class="nav-link" data-en="Why Choose Us" data-hi="हमें क्यों चुनें">Why Choose Us</a>
+                <a href="#courses" class="nav-link" data-en="Courses" data-hi="पाठ्यक्रम">Courses</a>
+                <a href="#gallery" class="nav-link" data-en="Gallery" data-hi="गैलरी">Gallery</a>
+                <a href="#contact" class="nav-link" data-en="Contact" data-hi="संपर्क">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-en="Your Success, Our Commitment" data-hi="आपकी सफलता, हमारी प्रतिबद्धता">Your Success, Our Commitment</h1>
+            <p data-en="Personalized coaching with 20+ years of experience, turning failure into effortless success. Students from all schools in Barwani!" data-hi="20+ वर्षों के अनुभव के साथ व्यक्तिगत कोचिंग, असफलता को सहज सफलता में बदलते हुए। बड़वानी के सभी स्कूलों के छात्र!">Personalized coaching with 20+ years of experience, turning failure into effortless success. Students from all schools in Barwani!</p>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="section" id="home">
+        <div class="section-title">
+            <h2 data-en="Welcome to Kushwah Coaching" data-hi="कुशवाह कोचिंग में आपका स्वागत है">Welcome to Kushwah Coaching</h2>
+        </div>
+        <div class="welcome-content">
+            <p data-en="Run by Sanjay Kushwah — Advocate & Educator with 20+ years of experience across various schools and roles." data-hi="संजय कुशवाह द्वारा संचालित — अधिवक्ता और शिक्षक जिन्हें विभिन्न स्कूलों और भूमिकाओं में 20+ वर्षों का अनुभव है।">Run by Sanjay Kushwah — Advocate & Educator with 20+ years of experience across various schools and roles.</p>
+            
+            <div class="welcome-point">
+                <i class="fas fa-check-circle"></i>
+                <p data-en="Helped failing students pass effortlessly." data-hi="असफल छात्रों को आसानी से पास होने में मदद की।">Helped failing students pass effortlessly.</p>
+            </div>
+            
+            <div class="welcome-point">
+                <i class="fas fa-check-circle"></i>
+                <p data-en="Guided 'Ruk Jana Nahi' and compartment students to success." data-hi="'रुक जाना नहीं' और कम्पार्टमेंट छात्रों को सफलता की ओर मार्गदर्शन किया।">Guided "Ruk Jana Nahi" and compartment students to success.</p>
+            </div>
+            
+            <div class="welcome-point">
+                <i class="fas fa-check-circle"></i>
+                <p data-en="Multiple selections in Navodaya Vidyalaya, Sainik Vidyalaya, and Utkrisht Vidyalaya and many more exams." data-hi="नवोदय विद्यालय, सैनिक विद्यालय, और उत्कृष्ट विद्यालय और कई अन्य परीक्षाओं में कई चयन।">Multiple selections in Navodaya Vidyalaya, Sainik Vidyalaya, and Utkrisht Vidyalaya and many more exams.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section" id="why-choose" style="background-color: var(--bg-light);">
+        <div class="section-title">
+            <h2 data-en="Why Choose Kushwah Coaching?" data-hi="कुशवाह कोचिंग को क्यों चुनें?">Why Choose Kushwah Coaching?</h2>
+        </div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th data-en="Aspects" data-hi="पहलू">Aspects</th>
+                    <th data-en="Other Coachings" data-hi="अन्य कोचिंग">Other Coachings</th>
+                    <th data-en="Kushwah Coaching" data-hi="कुशवाह कोचिंग">Kushwah Coaching</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-en="Batch Size" data-hi="बैच का आकार">Batch Size</td>
+                    <td data-en="Large batch size, minimal personal attention." data-hi="बड़े बैच, न्यूनतम व्यक्तिगत ध्यान।">Large batch size, minimal personal attention.</td>
+                    <td data-en="Small, focused batches with personalized guidance." data-hi="छोटे, केंद्रित बैच व्यक्तिगत मार्गदर्शन के साथ।">Small, focused batches with personalized guidance.</td>
+                </tr>
+                <tr>
+                    <td data-en="Teacher Focus" data-hi="शिक्षक का फोकस">Teacher Focus</td>
+                    <td data-en="Teachers distracted by phones while teaching." data-hi="पढ़ाते समय फोन से विचलित शिक्षक।">Teachers distracted by phones while teaching.</td>
+                    <td data-en="Dedicated teachers fully present, prioritizing student learning." data-hi="समर्पित शिक्षक पूरी तरह उपस्थित, छात्र के सीखने को प्राथमिकता देते हैं।">Dedicated teachers fully present, prioritizing student learning.</td>
+                </tr>
+                <tr>
+                    <td data-en="Experience" data-hi="अनुभव">Experience</td>
+                    <td data-en="Inexperienced college graduates as teachers." data-hi="अनुभवहीन कॉलेज ग्रेजुएट्स शिक्षक के रूप में।">Inexperienced college graduates as teachers.</td>
+                    <td data-en="Experienced educator with real classroom insights." data-hi="वास्तविक कक्षा अंतर्दृष्टि के साथ अनुभवी शिक्षक।">Experienced educator with real classroom insights.</td>
+                </tr>
+                <tr>
+                    <td data-en="Exposure" data-hi="एक्सपोज़र">Exposure</td>
+                    <td data-en="Limited exposure to different school systems and exams." data-hi="विभिन्न स्कूल प्रणालियों और परीक्षाओं तक सीमित पहुंच।">Limited exposure to different school systems and exams.</td>
+                    <td data-en="Teaching experience across multiple schools and boards." data-hi="कई स्कूलों और बोर्डों में शिक्षण का अनुभव।">Teaching experience across multiple schools and boards.</td>
+                </tr>
+                <tr>
+                    <td data-en="Parent Updates" data-hi="अभिभावक अपडेट">Parent Updates</td>
+                    <td data-en="Parents left clueless about the admission process." data-hi="माता-पिता को प्रवेश प्रक्रिया के बारे में अनजान छोड़ दिया जाता है।">Parents left clueless about the admission process.</td>
+                    <td data-en="Regular meetings to update parents on admissions and results." data-hi="प्रवेश और परिणामों पर माता-पिता को अपडेट करने के लिए नियमित बैठकें।">Regular meetings to update parents on admissions and results.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section" id="courses">
+        <div class="section-title">
+            <h2 data-en="Courses Offered" data-hi="पाठ्यक्रम">Courses Offered</h2>
+        </div>
+        
+        <div class="courses-grid">
+            <div class="course-card">
+                <h3 data-en="Classes 1st to 10th" data-hi="कक्षा 1 से 10 तक">Classes 1st to 10th</h3>
+                <p data-en="Comprehensive coaching for all subjects with personalized attention to ensure your child builds a strong foundation for their academic journey." data-hi="सभी विषयों के लिए व्यापक कोचिंग, व्यक्तिगत ध्यान के साथ यह सुनिश्चित करने के लिए कि आपका बच्चा अपनी शैक्षणिक यात्रा के लिए एक मजबूत आधार बनाए।">Comprehensive coaching for all subjects with personalized attention to ensure your child builds a strong foundation for their academic journey.</p>
+            </div>
+            
+            <div class="course-card">
+                <h3 data-en="Classes 11th & 12th" data-hi="कक्षा 11 और 12">Classes 11th & 12th</h3>
+                <p data-en="Specialized coaching for Commerce, Agriculture, and Biology streams. Our expert guidance helps students navigate these crucial years with confidence and excellence." data-hi="वाणिज्य, कृषि और जीव विज्ञान स्ट्रीम के लिए विशेष कोचिंग। हमारा विशेषज्ञ मार्गदर्शन छात्रों को इन महत्वपूर्ण वर्षों में आत्मविश्वास और उत्कृष्टता के साथ नेविगेट करने में मदद करता है।">Specialized coaching for Commerce, Agriculture, and Biology streams. Our expert guidance helps students navigate these crucial years with confidence and excellence.</p>
+            </div>
+            
+            <div class="course-card">
+                <h3 data-en="Entrance Exam Prep" data-hi="प्रवेश परीक्षा की तैयारी">Entrance Exam Prep</h3>
+                <p data-en="Targeted preparation for Navodaya, Sainik Vidyalaya, Utkrisht Vidyalaya, and other competitive exams. Our proven track record speaks for itself!" data-hi="नवोदय, सैनिक विद्यालय, उत्कृष्ट विद्यालय और अन्य प्रतिस्पर्धी परीक्षाओं के लिए लक्षित तैयारी। हमारा सिद्ध ट्रैक रिकॉर्ड अपने आप बोलता है!">Targeted preparation for Navodaya, Sainik Vidyalaya, Utkrisht Vidyalaya, and other competitive exams. Our proven track record speaks for itself!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="section-title">
+            <h2 data-en="Gallery — Moments of Joy & Achievement" data-hi="गैलरी — खुशी और उपलब्धि के क्षण">Gallery — Moments of Joy & Achievement</h2>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="1.jpg" alt="Prize Distribution" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 data-en="Prize Distribution Ceremony" data-hi="पुरस्कार वितरण समारोह">Prize Distribution Ceremony</h3>
+                    <p data-en="Students' hard work deserves recognition. We celebrate not just academic excellence but progress and creativity too." data-hi="छात्रों की कड़ी मेहनत को पहचान मिलनी चाहिए। हम केवल शैक्षणिक उत्कृष्टता ही नहीं, बल्कि प्रगति और रचनात्मकता का भी जश्न मनाते हैं।">Students' hard work deserves recognition. We celebrate not just academic excellence but progress and creativity too.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="3.jpg" alt="Vasant Panchami" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 data-en="Vasant Panchami Celebration" data-hi="वसंत पंचमी समारोह">Vasant Panchami Celebration</h3>
+                    <p data-en="Our students connect with cultural roots, worshipping Goddess Saraswati and understanding the deeper purpose of education." data-hi="हमारे छात्र सांस्कृतिक जड़ों से जुड़ते हैं, मां सरस्वती की पूजा करते हैं और शिक्षा के गहरे उद्देश्य को समझते हैं।">Our students connect with cultural roots, worshipping Goddess Saraswati and understanding the deeper purpose of education.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="5.jpg" alt="Outdoor Trips" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 data-en="Outdoor Trips — Learning Beyond the Classroom" data-hi="आउटडोर ट्रिप्स — कक्षा से परे सीखना">Outdoor Trips — Learning Beyond the Classroom</h3>
+                    <p data-en="We believe in holistic education. Our trips blend learning with fun, creating unforgettable memories and broader perspectives." data-hi="हम समग्र शिक्षा में विश्वास करते हैं। हमारी यात्राएँ सीखने को मनोरंजन के साथ मिलाती हैं, अविस्मरणीय यादें और व्यापक दृष्टिकोण बनाती हैं।">We believe in holistic education. Our trips blend learning with fun, creating unforgettable memories and broader perspectives.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="8.jpg" alt="Children's Day" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 data-en="Children's Day Celebration" data-hi="बाल दिवस समारोह">Children's Day Celebration</h3>
+                    <p data-en="Our unique cooking competitions teach life skills while having fun. Students showcase their talents beyond academics." data-hi="हमारी अनूठी कुकिंग प्रतियोगिताएं मज़े करते हुए जीवन कौशल सिखाती हैं। छात्र अकादमिक के अलावा अपनी प्रतिभाओं को प्रदर्शित करते हैं।">Our unique cooking competitions teach life skills while having fun. Students showcase their talents beyond academics.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="11.jpg" alt="Teacher's Day" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 data-en="Teacher's Day Celebration" data-hi="शिक्षक दिवस समारोह">Teacher's Day Celebration</h3>
+                    <p data-en="Students honor their mentors with heartfelt performances, strengthening the special bond between teachers and students." data-hi="छात्र हृदयस्पर्शी प्रदर्शन के साथ अपने मेंटर्स का सम्मान करते हैं, शिक्षकों और छात्रों के बीच विशेष बंधन को मजबूत करते हैं।">Students honor their mentors with heartfelt performances, strengthening the special bond between teachers and students.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="12.jpg" alt="Student Gift" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 data-en="A Student's Gift of Gratitude" data-hi="एक छात्र का कृतज्ञता का उपहार">A Student's Gift of Gratitude</h3>
+                    <p data-en="This touching moment captures our essence - transforming struggling students into success stories through unwavering support." data-hi="यह छूने वाला क्षण हमारे सार को दर्शाता है - अटल समर्थन के माध्यम से संघर्ष करने वाले छात्रों को सफलता की कहानियों में बदलना।">This touching moment captures our essence - transforming struggling students into success stories through unwavering support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="section-title">
+            <h2 data-en="Contact Us" data-hi="संपर्क करें">Contact Us</h2>
+        </div>
+        
+        <div class="contact-info">
+            <p data-en="Phone: 7509021814, 7000703152" data-hi="फोन: 7509021814, 7000703152">Phone: 7509021814, 7000703152</p>
+            <p data-en="Address: Tirupati Nagar, Street in front of Gurupad Hospital, Barwani" data-hi="पता: तिरुपति नगर, गुरुपद अस्पताल के सामने वाली गली, बड़वानी">Address: Tirupati Nagar, Street in front of Gurupad Hospital, Barwani</p>
+        </div>
+        
+        <a href="tel:7509021814" class="cta-button" data-en="Call Now" data-hi="अभी कॉल करें">Call Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+   <div class="footer-links">
+       <a href="#home" data-en="Home" data-hi="होम">Home</a> | 
+       <a href="#courses" data-en="Courses" data-hi="पाठ्यक्रम">Courses</a> | 
+       <a href="#gallery" data-en="Gallery" data-hi="गैलरी">Gallery</a> | 
+       <a href="#contact" data-en="Contact" data-hi="संपर्क">Contact</a>
+   </div>
+   
+   <p class="copyright" data-en="© 2025 Kushwah Coaching. All Rights Reserved." data-hi="© 2025 कुशवाह कोचिंग। सर्वाधिकार सुरक्षित।">© 2025 Kushwah Coaching. All Rights Reserved.</p>
+</footer>
+
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Language Switching Script -->
+<script>
+   // Check if language is already set in localStorage
+   let currentLanguage = localStorage.getItem('language') || 'english';
+   
+   // Function to set language
+   function setLanguage(language) {
+       currentLanguage = language;
+       localStorage.setItem('language', language);
+       
+       // Hide the modal
+       document.getElementById('languageModal').style.display = 'none';
+       
+       // Update all text on the page
+       updateLanguage();
+   }
+   
+   // Function to update text based on selected language
+   function updateLanguage() {
+       const elements = document.querySelectorAll('[data-en]');
+       
+       elements.forEach(element => {
+           if (currentLanguage === 'hindi' && element.hasAttribute('data-hi')) {
+               element.textContent = element.getAttribute('data-hi');
+           } else {
+               element.textContent = element.getAttribute('data-en');
+           }
+       });
+   }
+   
+   // On page load
+   document.addEventListener('DOMContentLoaded', function() {
+       // If language is already set, hide modal and update text
+       if (localStorage.getItem('language')) {
+           document.getElementById('languageModal').style.display = 'none';
+           updateLanguage();
+       }
+       
+       // Add smooth scrolling for anchor links
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+           anchor.addEventListener('click', function(e) {
+               e.preventDefault();
+               
+               document.querySelector(this.getAttribute('href')).scrollIntoView({
+                   behavior: 'smooth'
+               });
+           });
+       });
+   });
+   
+   // Marketing enhancement - Show call-to-action popup after 30 seconds
+   setTimeout(function() {
+       if (!sessionStorage.getItem('popupShown')) {
+           const ctaPopup = document.createElement('div');
+           ctaPopup.style.position = 'fixed';
+           ctaPopup.style.bottom = '20px';
+           ctaPopup.style.right = '20px';
+           ctaPopup.style.backgroundColor = '#f97316';
+           ctaPopup.style.color = 'white';
+           ctaPopup.style.padding = '15px 25px';
+           ctaPopup.style.borderRadius = '10px';
+           ctaPopup.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+           ctaPopup.style.zIndex = '999';
+           ctaPopup.style.maxWidth = '300px';
+           
+           if (currentLanguage === 'hindi') {
+               ctaPopup.innerHTML = `
+                   <h3 style="margin-top:0">अंतिम कुछ सीटें बची हैं!</h3>
+                   <p>अभी कॉल करके अपने बच्चे का भविष्य सुरक्षित करें। विशेष छूट सिर्फ सीमित समय के लिए उपलब्ध!</p>
+                   <button onclick="closePopup()" style="background:#fff; color:#f97316; border:none; padding:8px 15px; border-radius:5px; margin-top:10px; cursor:pointer; font-weight:bold;">अभी कॉल करें</button>
+                   <span onclick="hidePopup()" style="position:absolute; top:5px; right:10px; cursor:pointer; font-size:16px;">×</span>
+               `;
+           } else {
+               ctaPopup.innerHTML = `
+                   <h3 style="margin-top:0">Last Few Seats Remaining!</h3>
+                   <p>Call now to secure your child's future. Special discount available for limited time only!</p>
+                   <button onclick="closePopup()" style="background:#fff; color:#f97316; border:none; padding:8px 15px; border-radius:5px; margin-top:10px; cursor:pointer; font-weight:bold;">Call Now</button>
+                   <span onclick="hidePopup()" style="position:absolute; top:5px; right:10px; cursor:pointer; font-size:16px;">×</span>
+               `;
+           }
+           
+           document.body.appendChild(ctaPopup);
+           sessionStorage.setItem('popupShown', 'true');
+       }
+   }, 30000);
+   
+   function closePopup() {
+       window.location.href = 'tel:7509021814';
+       hidePopup();
+   }
+   
+   function hidePopup() {
+       const popup = document.querySelector('div[style*="position: fixed"]');
+       if (popup) {
+           popup.style.display = 'none';
+       }
+   }
+   
+   // Exit intent popup (shows when user tries to leave the page)
+   document.addEventListener('mouseleave', function(e) {
+       if (e.clientY < 0 && !sessionStorage.getItem('exitPopupShown')) {
+           const exitPopup = document.createElement('div');
+           exitPopup.style.position = 'fixed';
+           exitPopup.style.top = '0';
+           exitPopup.style.left = '0';
+           exitPopup.style.width = '100%';
+           exitPopup.style.height = '100%';
+           exitPopup.style.backgroundColor = 'rgba(0,0,0,0.8)';
+           exitPopup.style.display = 'flex';
+           exitPopup.style.justifyContent = 'center';
+           exitPopup.style.alignItems = 'center';
+           exitPopup.style.zIndex = '1000';
+           
+           const content = document.createElement('div');
+           content.style.backgroundColor = 'white';
+           content.style.padding = '30px';
+           content.style.borderRadius = '15px';
+           content.style.maxWidth = '500px';
+           content.style.width = '90%';
+           content.style.textAlign = 'center';
+           content.style.position = 'relative';
+           
+           if (currentLanguage === 'hindi') {
+               content.innerHTML = `
+                   <h2 style="color:#2563eb; margin-top:0">रुकिए! आप अपने बच्चे का भविष्य छोड़ रहे हैं</h2>
+                   <p>क्या आप सचमुच अपने बच्चे को अन्य कोचिंग सेंटर्स की भीड़ में खोना चाहते हैं, जहां उन्हें व्यक्तिगत ध्यान नहीं मिलेगा?</p>
+                   <p><strong>कुशवाह कोचिंग में:</strong></p>
+                   <ul style="text-align:left; padding-left:20px">
+                       <li>फेल होने वाले छात्र भी टॉपर बन जाते हैं</li>
+                       <li>प्रतिष्ठित प्रवेश परीक्षाओं में बार-बार सफलता</li>
+                       <li>20+ वर्षों का अनुभव</li>
+                       <li>सीमित बैच साइज़, अधिकतम ध्यान</li>
+                   </ul>
+                   <p style="font-weight:bold">अभी संपर्क करें - पहले 5 छात्रों के लिए 15% छूट!</p>
+                   <button onclick="exitPopupCall()" style="background:#f97316; color:white; border:none; padding:10px 25px; border-radius:50px; margin-top:15px; cursor:pointer; font-weight:bold; font-size:16px">अभी कॉल करें</button>
+                   <span onclick="hideExitPopup()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px;">×</span>
+               `;
+           } else {
+               content.innerHTML = `
+                   <h2 style="color:#2563eb; margin-top:0">Wait! You're leaving your child's future behind</h2>
+                   <p>Do you really want your child lost in the crowd of other coaching centers where they won't receive personal attention?</p>
+                   <p><strong>At Kushwah Coaching:</strong></p>
+                   <ul style="text-align:left; padding-left:20px">
+                       <li>Failing students become toppers</li>
+                       <li>Consistent success in prestigious entrance exams</li>
+                       <li>20+ years of experience</li>
+                       <li>Limited batch size, maximum attention</li>
+                   </ul>
+                   <p style="font-weight:bold">Contact now - 15% discount for the first 5 students!</p>
+                   <button onclick="exitPopupCall()" style="background:#f97316; color:white; border:none; padding:10px 25px; border-radius:50px; margin-top:15px; cursor:pointer; font-weight:bold; font-size:16px">Call Now</button>
+                   <span onclick="hideExitPopup()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px;">×</span>
+               `;
+           }
+           
+           exitPopup.appendChild(content);
+           document.body.appendChild(exitPopup);
+           document.body.style.overflow = 'hidden';
+           sessionStorage.setItem('exitPopupShown', 'true');
+       }
+   });
+   
+   function exitPopupCall() {
+       window.location.href = 'tel:7509021814';
+       hideExitPopup();
+   }
+   
+   function hideExitPopup() {
+       const exitPopup = document.querySelector('div[style*="position: fixed"][style*="width: 100%"]');
+       if (exitPopup) {
+           document.body.removeChild(exitPopup);
+           document.body.style.overflow = 'auto';
+       }
+   }
+   
+   // Testimonial rotator for added social proof
+   const testimonials = [
+       {
+           en: "My son failed 3 times before joining Kushwah Coaching. Now he's in the top 5 of his class!",
+           hi: "कुशवाह कोचिंग में शामिल होने से पहले मेरा बेटा 3 बार फेल हो गया था। अब वह अपनी कक्षा के टॉप 5 में है!"
+       },
+       {
+           en: "The personal attention my daughter receives here is incredible. Her confidence has skyrocketed!",
+           hi: "यहां मेरी बेटी को जो व्यक्तिगत ध्यान मिलता है वह अविश्वसनीय है। उसका आत्मविश्वास बहुत बढ़ गया है!"
+       },
+       {
+           en: "5 students from our batch got selected in Navodaya. Best coaching in Barwani, period.",
+           hi: "हमारे बैच के 5 छात्रों का नवोदय में चयन हुआ। बड़वानी में सबसे अच्छी कोचिंग, बिना किसी संदेह के।"
+       }
+   ];
+   
+   let currentTestimonialIndex = 0;
+   
+   function createTestimonialBanner() {
+       const banner = document.createElement('div');
+       banner.style.backgroundColor = '#2563eb';
+       banner.style.color = 'white';
+       banner.style.padding = '15px';
+       banner.style.textAlign = 'center';
+       banner.style.position = 'fixed';
+       banner.style.bottom = '0';
+       banner.style.left = '0';
+       banner.style.width = '100%';
+       banner.style.boxShadow = '0 -2px 10px rgba(0,0,0,0.1)';
+       banner.style.zIndex = '99';
+       banner.id = 'testimonialBanner';
+       
+       const testimonial = testimonials[currentTestimonialIndex];
+       banner.textContent = currentLanguage === 'hindi' ? testimonial.hi : testimonial.en;
+       
+       document.body.appendChild(banner);
+       
+       // Rotate testimonials every 8 seconds
+       setInterval(function() {
+           currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+           const nextTestimonial = testimonials[currentTestimonialIndex];
+           document.getElementById('testimonialBanner').textContent = currentLanguage === 'hindi' ? nextTestimonial.hi : nextTestimonial.en;
+       }, 8000);
+   }
+   
+   // Create testimonial banner after 15 seconds
+   setTimeout(createTestimonialBanner, 15000);
+</script>
+</body>
+</html>
